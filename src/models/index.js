@@ -9,9 +9,9 @@ import { MovieHasCategory } from "./movieHasCategory.js";
 
 import { sequelize } from "./sequelize.js";
 
-// relation User/Recipe (One-to-Many)
+// User/Recipe relationship (One-to-Many)
 User.hasMany(Recipe, {
-  as: "recipes", // alias de l'association
+  as: "recipes", // alias for the association
   foreignKey: {
     name: "userId",
     allowNull: false,
@@ -25,9 +25,10 @@ Recipe.belongsTo(User, {
     allowNull: false,
   },
 });
-// relation Recipe/MovieAndSerie (One-to-Many)
+
+// Recipe/MovieAndSerie relationship (One-to-Many)
 MovieAndSerie.hasMany(Recipe, {
-  as: "recipes", // alias de l'association
+  as: "recipes", // alias for the association
   foreignKey: {
     name: "movieId",
     allowNull: false,
@@ -42,9 +43,9 @@ Recipe.belongsTo(MovieAndSerie, {
   },
 });
 
-//relation Recipe/RecipeCategory (One-to-Many)
+// Recipe/RecipeCategory relationship (One-to-Many)
 RecipeCategory.hasMany(Recipe, {
-  as: "recipes", // alias de l'association
+  as: "recipes", // alias for the association
   foreignKey: {
     name: "recipeCategoryId",
     allowNull: false,
@@ -59,7 +60,7 @@ Recipe.belongsTo(RecipeCategory, {
   },
 });
 
-// relation Recipe/Ingredient (Many-to-Many)
+// Recipe/Ingredient relationship (Many-to-Many)
 Recipe.belongsToMany(Ingredient, {
   as: "ingredient",
   through: RecipeHasIngredient,
@@ -70,7 +71,7 @@ Ingredient.belongsToMany(Recipe, {
   through: RecipeHasIngredient,
 });
 
-// relation MovieAndSerie/MovieCategory (Many-to-Many)
+// MovieAndSerie/MovieCategory relationship (Many-to-Many)
 MovieAndSerie.belongsToMany(MovieCategory, {
   as: "movieAndSerieCategory",
   through: MovieHasCategory,

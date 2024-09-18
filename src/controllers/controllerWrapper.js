@@ -1,6 +1,6 @@
 export function controllerWrapper(controller) {
     return async function async (req,res, next){
-        const start = performance.now();
+        const start = performance.now();// Record the start time of the operation
         try {
             await controller (req,res,next)
         } catch (error) {

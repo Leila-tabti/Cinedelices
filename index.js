@@ -11,9 +11,6 @@ import { MovieAndSerie } from "./src/models/movieAndSerie.js";
 import { Recipe } from "./src/models/recipe.js";
 
 
-import cookieParser from "cookie-parser";
-import helmet from "helmet";
-
 
 import cookieParser from "cookie-parser";
 import helmet from "helmet";
@@ -35,6 +32,7 @@ app.use(
       if (
         process.env.ALLOWED_DOMAINS.split(",").indexOf(origin) !== -1 ||
         !origin
+        // Check if the origin is in the allowed domains list or if no origin is provided (e.g., in server-side requests)
       ) {
         callback(null, true);
       } else {

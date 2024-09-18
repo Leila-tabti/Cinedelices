@@ -5,26 +5,26 @@ export const idSchema = joi.object({
   id: joi.number().integer().required(),
 });
 
-// Schémas de validation pour la route recipe/:id/movieAndSerie/:id
+// Validation schema for route recipe/:id/movieAndSerie/:id
 export const recipeAndMovieSerieSchema = joi.object({
   recipeId: joi.number().integer().required(),
   movieAndSerieId: joi.number().integer().required(),
 });
 
-// Schémas de validation pour la route recipe/:id/ingredient/:id
+// Validation schema for route recipe/:id/ingredient/:id
 export const recipeAndIngredientSchema = joi.object({
   recipeId: joi.number().integer().required(),
   ingredientId: joi.number().integer().required(),
   quantity: joi.string().required(),
 });
 
-// Schémas de validation pour la route recipe/:id/recipeCategory/:id
+// Validation schema for route recipe/:id/recipeCategory/:id
 export const recipeAndRecipeCategorySchema = joi.object({
   recipeId: joi.number().integer().required(),
   recipeCategoryId: joi.number().integer().required(),
 });
 
-// Schémas de validation pour les recettes
+// Validation schemas for recipes
 
 export const createRecipeSchema = joi.object({
   name: joi.string().required(),
@@ -52,7 +52,7 @@ export const updateRecipeSchema = joi
   })
   .min(1);
 
-// Schémas de validation pour les utilisateurs
+// Validation schemas for users
 
 export const createUserSchema = joi.object({
   email: joi.string().email().required(),
@@ -71,9 +71,9 @@ export const updateUserSchema = joi
     avatar: joi.string(),
     role: joi.string(),
   })
-  .min(1); // Cela signifie que l'objet doit contenir au moins un des champs définis (email, pseudo, password, avatar, role). Si l'objet envoyé dans la requête est vide ou ne contient aucun de ces champs, la validation échouera.
+  .min(1); // This means the object must contain at least one of the defined fields (email, pseudo, password, avatar, role). If the object sent in the request is empty or does not contain any of these fields, the validation will fail.
 
-// Schémas de validation pour les films et séries
+// Validation schemas for movies and series
 
 export const createMovieAndSerieSchema = joi.object({
   name: joi.string().required(),

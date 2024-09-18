@@ -1,12 +1,12 @@
 import { Sequelize } from "sequelize";
 
-// on récupérer les variables nécessaires
+// Retrieve necessary environment variables
 const { PGUSER, PGPASSWORD, PGHOST, PGPORT, PGDATABASE } = process.env;
 
-// on construit l'url de connexion
+// Construct the connection URL
 const databaseURL = `postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}:${PGPORT}/${PGDATABASE}`;
 
-// on crée l'instance (une instance c'est juste un objet, fabriqué par une classe) de sequelize
+// Create an instance (an instance is just an object created by a class) of Sequelize
 export const sequelize = new Sequelize(databaseURL, {
   define: {
     underscored: true,
