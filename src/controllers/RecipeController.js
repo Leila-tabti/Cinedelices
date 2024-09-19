@@ -70,15 +70,13 @@ export const deleteOne = async (req, res) => {
 };
 
 export const associateOneWithCategory = async (req, res) => {
-
-    const recipe = await Recipe.findByPk(req.params.id);
-    if (!recipe) {
-        throw new HTTPError(404, "Oups! Cette scénario semble manquer au scénario");
-    }
-    await recipe.setRecipeCategory(req.body);
-    return res.json(recipe);
-
-  };
+  const recipe = await Recipe.findByPk(req.params.id);
+  if (!recipe) {
+    throw new HTTPError(404, "Oups! Cette scène semble manquer au scénario");
+  }
+  await recipe.setRecipeCategory(req.body);
+  return res.json(recipe);
+};
 
 export const updateOne = async (req, res) => {
   const recipe = await Recipe.findByPk(req.params.id, {
@@ -90,7 +88,7 @@ export const updateOne = async (req, res) => {
     ],
   });
   if (!recipe) {
-    throw new HTTPError(404, "Oups! Cette scénario semble manquer au scénario");
+    throw new HTTPError(404, "Oups! Cette scène semble manquer au scénario");
   }
   await recipe.update(req.body);
   return res.json(recipe);
@@ -105,8 +103,22 @@ export const getRecipesByMovie = async (req, res) => {
   });
 
   if (!movies) {
-    throw new HTTPError(404, "Oups! Cette scénario semble manquer au scénario");
+    throw new HTTPError(404, "Oups! Cette scène semble manquer au scénario");
   }
   return res.json(movies.recipes);
 };
 
+// Affichage des dernières recettes ajoutées
+export const getLatestRecipes = async (req, res) => {
+  try {
+    const latestRecipes = await Recipe.findAll({
+      order: [["createdAt", "DESC"]],
+      limit: 6,
+    });
+    return res.json(latestRecipes);
+  } catch (error) {
+    return res.status(500).json({
+      message: "Erreur lors de la récupération des dernières recettes.",
+    });
+  }
+};

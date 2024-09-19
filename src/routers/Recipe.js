@@ -7,6 +7,7 @@ import {
   updateOne,
   deleteOne,
 } from "../controllers/RecipeController.js";
+
 import {
   updateRecipeSchema,
   idSchema,
@@ -17,6 +18,9 @@ import {
 export const router = Router();
 
 router.get("/", controllerWrapper(getAll));
+
+// Latest recipes added
+router.get("/latest", controllerWrapper(getLatestRecipes));
 
 router.get(
   "/:id",
