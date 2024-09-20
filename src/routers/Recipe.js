@@ -7,7 +7,7 @@ import {
   updateOne,
   deleteOne,
   getLatestRecipes,
-} from "../controllers/recipeController.js";
+} from "../controllers/RecipeController.js";
 
 import {
   updateRecipeSchema,
